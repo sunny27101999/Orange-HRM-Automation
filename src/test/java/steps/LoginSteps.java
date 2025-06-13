@@ -8,6 +8,8 @@ import net.thucydides.core.annotations.Steps;
 import pages.LoginPage;
 import net.serenitybdd.core.pages.PageObject;
 import org.junit.Assert;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LoginSteps extends PageObject {
 
@@ -16,6 +18,11 @@ public class LoginSteps extends PageObject {
 
     @Given("I am on the OrangeHRM login page")
     public void iAmOnTheLoginPage() {
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--start-maximized");
+        getDriver().manage().window().maximize();
         open();
     }
 
